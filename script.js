@@ -5,10 +5,9 @@ const yesBtn = document.querySelector(".yes-btn");
 const noBtn = document.querySelector(".no-btn");
 const newBtn = document.querySelector(".new-btn");
 
-// Function to check and display the birthday message
 function updateCountdown() {
   const currentDate = new Date();
-  const targetDate = new Date("December 25, 2023 00:00:00");
+  const targetDate = new Date("December 22, 2023 00:00:00");
   const timeDifference = targetDate.getTime() - currentDate.getTime();
 
   if (timeDifference > 0) {
@@ -21,31 +20,37 @@ function updateCountdown() {
     );
     const secondsRemaining = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
-    question.innerHTML = `Come back on your birthday!<br>Time Remaining: ${daysRemaining} days, ${hoursRemaining} hours, ${minutesRemaining} minutes, ${secondsRemaining} seconds`;
+    console.log(
+      `Time Remaining: ${daysRemaining} days, ${hoursRemaining} hours, ${minutesRemaining} minutes, ${secondsRemaining} seconds`
+    );
   } else {
-    question.innerHTML = "Happy Birthday!";
-    clearInterval(timer); // Stop the countdown once it reaches the target date
+    question.innerHTML =
+      '<a href="hbd.html">Click to view the best 1 year 8 months of my life</a>';
+    clearInterval(timer);
   }
 }
+
+newBtn.addEventListener("click", () => {
+  newBtn.style.display = "none";
+  gif.style.display = "none";
+  clearInterval(timer);
+  updateCountdown();
+  timer = setInterval(updateCountdown, 1000);
+});
 
 yesBtn.addEventListener("click", () => {
   question.innerHTML = "Yay, see you on the 24th!";
   gif.src = "images/2ndgif.gif";
 
-  // Hide the buttons after clicking "Yes"
   yesBtn.style.display = "none";
   noBtn.style.display = "none";
 
-  //after yes show new button
   newBtn.style.display = "block";
 
-  // Copy the styles from "Yes" button to the new button
   const computedStyle = window.getComputedStyle(yesBtn);
   newBtn.style.backgroundColor = computedStyle.backgroundColor;
   newBtn.style.color = computedStyle.color;
   newBtn.style.border = computedStyle.border;
-  // Add any other necessary styles to match the "Yes" button
-
   newBtn.style.width = "200px";
 });
 
@@ -61,10 +66,10 @@ noBtn.addEventListener("mouseover", () => {
   noBtn.style.top = randomY + "px";
 });
 
-// Event listener for the new button click
 newBtn.addEventListener("click", () => {
-  updateCountdown(); // Initial call when the new button is clicked
-  const timer = setInterval(updateCountdown, 1000); // Update the countdown every second
-  gif.style.display = "none"; // Hide the second GIF after the new button is clicked
+  updateCountdown();
+  const timer = setInterval(updateCountdown, 1000);
+  gif.style.display = "none";
   newBtn.style.display = "none";
+  carousel.style.display = "flex";
 });
