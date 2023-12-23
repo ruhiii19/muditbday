@@ -20,9 +20,7 @@ function updateCountdown() {
     );
     const secondsRemaining = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
-    console.log(
-      `Time Remaining: ${daysRemaining} days, ${hoursRemaining} hours, ${minutesRemaining} minutes, ${secondsRemaining} seconds`
-    );
+    question.innerHTML = `Time Remaining: ${daysRemaining} days, ${hoursRemaining} hours, ${minutesRemaining} minutes, ${secondsRemaining} seconds`;
   } else {
     question.innerHTML =
       '<a href="hbd.html">Click to view the best 1 year 8 months of my life</a>';
@@ -33,9 +31,9 @@ function updateCountdown() {
 newBtn.addEventListener("click", () => {
   newBtn.style.display = "none";
   gif.style.display = "none";
-  clearInterval(timer);
+  clearInterval(timer); // Clear any existing interval
   updateCountdown();
-  timer = setInterval(updateCountdown, 1000);
+  timer = setInterval(updateCountdown, 1000); // Assign the interval to the global timer variable
 });
 
 yesBtn.addEventListener("click", () => {
@@ -71,5 +69,4 @@ newBtn.addEventListener("click", () => {
   const timer = setInterval(updateCountdown, 1000);
   gif.style.display = "none";
   newBtn.style.display = "none";
-  carousel.style.display = "flex";
 });
