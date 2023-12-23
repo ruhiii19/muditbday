@@ -7,7 +7,7 @@ const newBtn = document.querySelector(".new-btn");
 
 function updateCountdown() {
   const currentDate = new Date();
-  const targetDate = new Date("December 22, 2023 00:00:00");
+  const targetDate = new Date("December 25, 2023 00:00:00");
   const timeDifference = targetDate.getTime() - currentDate.getTime();
 
   if (timeDifference > 0) {
